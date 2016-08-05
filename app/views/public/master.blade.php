@@ -8,7 +8,15 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>{{ $title }}</title>
 
+    {{ HTML::style(asset('assets/css/bootstrap.css')) }}
+    {{ HTML::style(asset('assets/fonts/simple-line/css/simple-line-icons.css')) }}
+    {{ HTML::style(asset('assets/fonts/themify-icons/themify-icons.css')) }}
+    {{ HTML::style(asset('assets/fonts/font-awesome-4.6.3/css/font-awesome.min.css')) }}
+    {{ HTML::style(asset('assets/vendo/owl-carousel/owl.carousel.css')) }}
+    {{ HTML::style(asset('assets/vendo/owl-carousel/owl.carousel.css')) }}
+    {{ HTML::style(asset('assets/vendo/owl-carousel/owl.theme.css')) }}
     {{ HTML::style(asset('css/public.css')) }}
+    {{ HTML::style(asset('assets/css/style.css')) }}
 
     @yield('css')
 
@@ -32,27 +40,70 @@
     @include('_navbar')
 @endif
 
-    <div class="container" id="content">
+    <header class="navbar-wrapper navbar-top">
+        <div class="">
+            <div id="topbar-wrapper">
+    
+                <div class="container">
+                <div class="row">
+                
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                    
+                        <div class="topbar-left">
+                            <ul class="list-inline">
+                            <li><span class="topbar-label"><i class="fa fa fa-map-marker"></i></span><span class="topbar-hightlight">mTower – Số 4 Ngõ 151, Yên Lãng, Đống Đa, Hà Nội</span></li><li><span class="topbar-label"><i class="fa fa-phone"></i></span><span class="topbar-hightlight">1900 63 64 86</span></li><li><span class="topbar-label"><i class="fa  fa-clock-o"></i></span><span class="topbar-hightlight">Mon - Sat: 8:00 - 18:00</span></li>              </ul>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="col-md-4 col-sm-4 hidden-xs">
+                    
+                        <div class="topbar-right text-right">
+                            <div class="st-social"><ul class="list-inline"><li><a class="fa fa-facebook" href="#" title="Facebook" target="_blank"></a></li><li><a class="fa fa-twitter" href="#" title="Twitter" target="_blank"></a></li><li><a class="fa fa-google-plus" href="#" title="Google Plus" target="_blank"></a></li></ul></div>
+                            <div role="presentation" class="dropdown flag-bottom pull-right">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="assets/images/flag/vn.png" alt="">&nbsp; Việt Nam <span class="caret"></span> </a>
+                               
+                                @section('languagesMenu')
+                                    {{ TypiCMS::languagesMenu(array('class' => 'nav nav-pills pull-right')) }}
+                                @show
+<!-- 
+                                <ul id="menu1" class="dropdown-menu" aria-labelledby="drop4">
+                                    <li><a href=""><img src="assets/images/flag/id.png" alt="">&nbsp; Indonesia</a></li>
+                                    <li><a href=""><img src="assets/images/flag/th.png" alt="">&nbsp; Thailand</a></li>
+                                </ul> -->
+                            </div>      
+                        </div>
+                        
+                    </div>
+                
+                </div>
+                </div>
+                
+            </div>
+            <div class="menu-vic">
+                <nav class="navbar true-navbar" role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                            <span class="ti-align-justify"></span>
+                        </button>
+                        <a class="navbar-brand nav-logo" href="/">
+                            <img style="" src="{{ asset('assets/images/logo-true-w.png') }}" alt="">
+                        </a>
+                    </div>
 
-        @section('header')
-        <header>
-            <h1>
-                <a href="{{ TypiCMS::homepage() }}">{{ Config::get('typicms.' . $lang . '.websiteTitle') }}</a>
-            </h1>
-        </header>
-        @show
+                    <div class="collapse navbar-collapse navbar-ex1-collapse">
 
-        @section('languagesMenu')
-        <nav role="navigation">
-            {{ TypiCMS::languagesMenu(array('class' => 'nav nav-pills pull-right')) }}
-        </nav>
-        @show
+                        @section('mainMenu')
+                        <div class="collapse navbar-collapse navbar-ex1-collapse">
+                            {{ Menus::build('main') }}
+                        </div>
+                        @show
 
-        @section('mainMenu')
-        <nav role="navigation">
-            {{ Menus::build('main') }}
-        </nav>
-        @show
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
 
         @include('public._alert')
 
@@ -76,17 +127,18 @@
         </div>
 
         @section('footer')
-        <div class="row">
-
-            <div class="col-sm-4">
-                {{ Menus::build('social') }}
-            </div>
-
-            <nav class="col-sm-8" role="navigation">
-                {{ Menus::build('footer') }}
-            </nav>
-
-        </div>
+        <footer class="footer-block white-block"></footer>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        {{ HTML::script(asset('assets/js/bootstrap.js')) }}
+        {{ HTML::script(asset('assets/vendo/owl-carousel/owl.carousel.min.js')) }}
+        {{ HTML::script(asset('assets/vendo/parallax/parallax.min.js')) }}
+        {{ HTML::script(asset('assets/js/custom.js')) }}
+            
+        <script>
+            $(document).ready(function() {
+                $(".footer-block").load("footer.html"); 
+            })
+        </script>
         @show
 
     </div>
